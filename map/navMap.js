@@ -1,0 +1,35 @@
+export default {
+	pluginList:[{
+		key:"backgroundColor",
+		mean:"背景色",
+		type:"color"
+	},{
+		key:"backgroundImage",
+		mean:"背景图片",
+		type:"file"
+	},{
+		key:"subPluginType",
+		mean:"导航样式",
+		type:"radio",
+		valueList:[{
+			key:"TEXT",
+			mean:"文字"
+		},{
+			key:"IMAGE",
+			mean:"图文"
+		}]
+	}],
+	subPluginList:[{
+		key:"linkUrl",
+		mean:"链接",
+		type:"text"
+	},{
+		key:"picUrl",
+		mean:"导航图片",
+		type:"file"
+	},{
+		key:"name",
+		mean:"导航名称",
+		type:"text"
+	}]
+}

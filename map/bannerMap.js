@@ -1,0 +1,20 @@
+export default {
+	pluginList:[{
+		key:"backgroundColor",
+		mean:"背景色",
+		type:"color"
+	},{
+		key:"backgroundImage",
+		mean:"背景图片",
+		type:"file"
+	}],
+	subPluginList:[{
+		key:"picUrl",
+		mean:"图片",
+		type:"file"
+	},{
+		key:"linkUrl",
+		mean:"链接",
+		type:"text"
+	}]
+}

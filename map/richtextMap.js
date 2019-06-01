@@ -1,0 +1,23 @@
+export default {
+	pluginList:[{
+		key:"backgroundColor",
+		mean:"背景色",
+		type:"color"
+	},{
+		key:"backgroundImage",
+		mean:"背景图片",
+		type:"file"
+	},{
+		key:"margin",
+		mean:"边距",
+		type:"number"
+	},{
+		key:"contentColor",
+		mean:"内容底色",
+		type:"color"
+	},{
+		key:"borderRadius",
+		mean:"圆角",
+		type:"number"
+	}]
+}

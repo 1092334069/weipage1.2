@@ -1,0 +1,29 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<style type="text/css">
+	[v-cloak]{
+		opacity:0;
+	}
+</style>
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body class="yui">
+	<div id="weipage" v-cloak :style="{backgroundColor:weipageData.backgroundColor}">
+		<template v-for="item in weipageData.pluginList">
+			<w-nav v-if="item.pluginType == 'NAV'" :plugin-data="item"></w-nav>
+			<w-richtext v-else-if="item.pluginType == 'RICHTEXT'" :plugin-data="item"></w-richtext>
+			<w-space v-else-if="item.pluginType == 'SPACE'" :plugin-data="item"></w-space>
+			<w-animated v-else-if="item.pluginType == 'ANIMATED'" :plugin-data="item"></w-animated>
+			<w-button v-else-if="item.pluginType == 'BUTTON'" :plugin-data="item" @changeweipagedata="changeWeipageData"></w-button>
+			<w-dialog v-else-if="item.pluginType == 'DIALOG'" :plugin-data="item"></w-dialog>
+			<w-decorate v-else-if="item.pluginType == 'DECORATE'" :plugin-data="item"></w-decorate>
+			<w-timer v-else-if="item.pluginType == 'TIMER'" :plugin-data="item" @changeweipagedata="changeWeipageData"></w-timer>
+		</template>	
+	</div>
+
+	<script src="./dist/mobile.bundle.js"></script>
+</body>

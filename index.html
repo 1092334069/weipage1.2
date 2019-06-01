@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>微页面</title>
+<style type="text/css">
+	[v-cloak]{
+		opacity:0;
+	}
+</style>
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body class="yui">
+	<div class="weipage_page">
+
+		<div id="weipageCreate" class="model_nav_wrap" v-cloak>
+			<h2 class="title">添加内容</h2>
+			 <ul class="weipage_nav_list">
+			    <li v-for="item in pluginList" :class="item.style" :data-plugintype="item.type" v-on:click="createPlugin">{{item.name}}</li>
+			</ul>
+			<div style="width:100%;text-align:center;padding:15px 0;margin-top:54px;cursor: pointer" v-on:click="exportData">导出数据</div>
+		</div>
+
+		<div id="weipage" class="yui_mobile" v-cloak>
+			<div class="yui_mobile_head" @click="selectWeipage"><h1>{{weipageData.title}}</h1></div>
+			<div class="yui_mobile_body">
+				<template v-for="item in weipageData.pluginList">
+					<w-animated v-if="item.pluginType == 'ANIMATED'" :plugin-data="item"></w-animated>
+					<w-banner v-else-if="item.pluginType == 'BANNER'" :plugin-data="item"></w-banner>
+					<w-button v-else-if="item.pluginType == 'BUTTON'" :plugin-data="item"></w-button>
+					<w-decorate v-else-if="item.pluginType == 'DECORATE'" :plugin-data="item"></w-decorate>
+					<w-dialog v-else-if="item.pluginType == 'DIALOG'" :plugin-data="item"></w-dialog>
+					<w-form v-else-if="item.pluginType == 'FORM'" :plugin-data="item"></w-form>
+					<w-nav v-else-if="item.pluginType == 'NAV'" :plugin-data="item"></w-nav>
+					<w-product v-else-if="item.pluginType == 'PRODUCT'" :plugin-data="item"></w-product>
+					<w-richtext v-else-if="item.pluginType == 'RICHTEXT'" :plugin-data="item"></w-richtext>
+					<w-search v-else-if="item.pluginType == 'SEARCH'" :plugin-data="item"></w-search>
+					<w-showcase v-else-if="item.pluginType == 'SHOWCASE'" :plugin-data="item"></w-showcase>
+					<w-space v-else-if="item.pluginType == 'SPACE'" :plugin-data="item"></w-space>					
+					<w-timer v-else-if="item.pluginType == 'TIMER'" :plugin-data="item"></w-timer>
+				</template>		
+			</div>
+		</div>
+
+		<div id="weipageForm" class="edit_page" v-cloak>
+			<form id="weipage_option_form">
+				<w-page-form v-if="weipageData" :plugin-data="weipageData"></w-page-form>
+			</form>
+			<form id="plugin_option_form" class="edit_form" v-if="pluginData">
+				<w-animated-form  v-if="pluginData.pluginType == 'ANIMATED'" :plugin-data="pluginData"></w-animated-form>
+				<w-banner-form v-else-if="pluginData.pluginType == 'BANNER'" :plugin-data="pluginData"></w-banner-form>
+				<w-button-form v-else-if="pluginData.pluginType == 'BUTTON'" :plugin-data="pluginData"></w-button-form>
+				<w-decorate-form v-else-if="pluginData.pluginType == 'DECORATE'" :plugin-data="pluginData"></w-decorate-form>
+				<w-dialog-form v-else-if="pluginData.pluginType == 'DIALOG'" :plugin-data="pluginData" ></w-dialog-form>
+				<w-form-form v-else-if="pluginData.pluginType == 'FORM'" :plugin-data="pluginData"></w-form-form>
+				<w-nav-form v-else-if="pluginData.pluginType == 'NAV'" :plugin-data="pluginData"></w-nav-form>
+				<w-product-form v-else-if="pluginData.pluginType == 'PRODUCT'" :plugin-data="pluginData"></w-product-form>
+				<w-richtext-form v-else-if="pluginData.pluginType == 'RICHTEXT'" :plugin-data="pluginData"></w-richtext-form>
+				<w-search-form v-else-if="pluginData.pluginType == 'SEARCH'" :plugin-data="pluginData"></w-search-form>
+				<w-showcase-form v-else-if="pluginData.pluginType == 'SHOWCASE'" :plugin-data="pluginData"></w-showcase-form>
+				<w-space-form v-else-if="pluginData.pluginType == 'SPACE'" :plugin-data="pluginData"></w-space-form>			
+				<w-timer-form v-else-if="pluginData.pluginType == 'TIMER'" :plugin-data="pluginData"></w-timer-form>
+			</form>
+			<form id="subPlugin_option_form" class="edit_form" v-if="subPluginData">
+				<w-banner-sub-form v-if="pluginData.pluginType == 'BANNER'" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-banner-sub-form>
+				<w-button-sub-form v-else-if="pluginData.pluginType == 'BUTTON'" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-button-sub-form>
+				<w-dialog-sub-form v-else-if="pluginData.pluginType == 'DIALOG'" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-dialog-sub-form>
+				<w-form-sub-form v-else-if="pluginData.pluginType == 'FORM'" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-form-sub-form>
+				<w-nav-sub-form v-else-if="pluginData.pluginType == 'NAV'" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-nav-sub-form>
+				<w-search-sub-form v-else-if="pluginData.pluginType == 'SEARCH'" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-search-sub-form>
+				<w-showcase-sub-form v-else-if="pluginData.pluginType == 'SHOWCASE'" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-showcase-sub-form>			
+				<w-timer-sub-form v-else-if="pluginData.pluginType == 'TIMER'" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-timer-sub-form>
+			</form>
+			<form id="thirdPlugin_option_form" class="edit_form" v-if="thirdPluginData">
+				<w-button-third-form v-if="pluginData.pluginType == 'BUTTON'" :third-plugin-data="thirdPluginData" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-button-third-form>
+				<w-dialog-third-form v-else-if="pluginData.pluginType == 'DIALOG'" :third-plugin-data="thirdPluginData" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-dialog-third-form>
+				<w-form-third-form v-else-if="pluginData.pluginType == 'FORM'" :third-plugin-data="thirdPluginData" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-form-third-form>
+				<w-timer-third-form v-else-if="pluginData.pluginType == 'TIMER'" :third-plugin-data="thirdPluginData" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-timer-third-form>
+			</form>
+			<form id="fourthPlugin_option_form" class="edit_form" v-if="fourthPluginData">
+				<w-button-fourth-form v-if="pluginData.pluginType == 'BUTTON'" :fourth-plugin-data="fourthPluginData" :third-plugin-data="thirdPluginData" :sub-plugin-data="subPluginData" :plugin-data="pluginData"></w-button-fourth-form>
+			</form>
+			<div class="to_left_arrow"></div>
+		</div>
+	</div>
+
+	<script src="./dist/index.bundle.js"></script>
+</body>

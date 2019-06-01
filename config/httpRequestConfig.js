@@ -1,0 +1,82 @@
+//测试接口一
+let testInfo = {
+	name:"测试一",
+	url:"/test",
+	data:"success=1",
+	callBackList:[{
+		condition:"status==1",
+		formList:[{
+			type:"TEXT",
+			key:"title",
+			value:"title"
+		},{
+			type:"IMAGE",
+			key:"image.imageUrl",
+			value:""
+		}]
+	},{
+		formList:[{
+			type:"TEXT",
+			key:"title",
+			value:"title"
+		}]
+	}]
+};
+
+//测试接口二
+let test2Info = {
+	name:"测试二",
+	url:"/test2",
+	data:"",
+	callBackList:[{
+		condition:"status>0&&result=0",
+		formList:[{
+			type:"TEXT",
+			key:"title",
+			value:"title"
+		},{
+			type:"TEXT",
+			key:"content",
+			value:"content"
+		},{
+			type:"IMAGE",
+			key:"image.imageUrl",
+			value:""
+		}]
+	},{
+		condition:"result<6",
+		formList:[{
+			type:"TEXT",
+			key:"title",
+			value:"title"
+		}]
+	},{
+		formList:[{
+			type:"TEXT",
+			key:"content",
+			value:"content"
+		}]
+	}]
+};
+
+let test3Info = {
+	name:"测试三",
+	url:"/test3",
+	data:"",
+	callBackList:[{
+		condition:"codeInfo.code==1001",
+		formList:[{
+			type:"TEXT",
+			key:"title",
+			value:"title"
+		}]
+	},{
+		formList:[{
+			type:"TEXT",
+			key:"content",
+			value:"content"
+		}]
+	}]
+};
+
+export default [testInfo,test2Info,test3Info]
